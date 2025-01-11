@@ -4,15 +4,13 @@ public:
         //POTD By me FTS (First Time Seeing)
         int n=s.size();
         if (n<k)return false;
-        map<char,int>mpp;
+        vector<int>v(26,0);
         for(auto i:s){
-            mpp[i]++;
+            v[i-'a']++;
         }
         int a=0;
-        for(auto i :mpp){
-            if(i.second%2!=0){
-                a++;
-            }
+        for(int i=0;i<26;i++){
+            if(v[i]%2==1)a++;
         }
         if(a>k)return false;
         return true;
