@@ -8,16 +8,11 @@ public:
         }
         int ans=0;
         for(auto [k,v]:freq){
-            if (v>2){
-                if(v%2==0){
-                    ans+=2;
-                }
-                else{
-                    ans+=1;
-                }
+            if(v%2==0){
+                ans+=2;
             }
             else{
-                ans+=v;
+                ans+=1;
             }
         }
         return ans;
