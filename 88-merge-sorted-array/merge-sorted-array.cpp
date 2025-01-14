@@ -9,7 +9,6 @@ public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         //Optimal 1 by comparing the largest and smallest of both arrays and sorting all
         //TC - min(n,m)+nlogn+mlogm , SC-O(1)
-        /*
         int left=m-1;
         int right=0;
         while(left>=0 && right<n){
@@ -26,10 +25,10 @@ public:
         for(int i=m;i<n+m;i++){
             nums1[i]=nums2[i-m];
         }
-        */
         
         //Optimal 2 by Gap method and Shell sort
         //TC- (n+m)log(n+m) SC-O(1)
+        /*
         int l=n+m;
         int gap=l/2 + (l%2);
         while(gap>0){
@@ -48,6 +47,7 @@ public:
         for(int i=m;i<n+m;i++){
             nums1[i]=nums2[i-m];
         }
+        */
 
         //Brute Force by Merge func of merge sort TC-n+m SC=n+m
         /*
