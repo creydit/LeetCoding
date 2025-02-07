@@ -6,16 +6,14 @@ public:
         unordered_map<int,int>mpp;
         for(int i=0;i<nums.size();i++){
             for(int j=i+1;j<nums.size();j++){
-                int p=nums[i]*nums[j];
-                mpp[p]++;
+                mpp[nums[i]*nums[j]]++;
             }
         }
         for(auto [x,y]:mpp){
-            int equal= y*(y-1)/2;
-            ans+=(equal*8);
+            ans+=((y*(y-1)/2)*8);
         }
         return ans;
-        
+
         //FTS By me, POTD
         /*
         int ans=0;
