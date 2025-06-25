@@ -2,7 +2,7 @@ class Solution:
     def beautySum(self, s: str) -> int:
         n=len(s)
         #Better Solution by reducing the inner 3rd loop as the 2nd loop will most of that job
-        # TC- O(n2) and SC-O(1) as atmost 26 elements in dic 
+        # TC- O(n2) and SC-O(1) as atmost 26 elements in dic
         ans=0
         for i in range(n):
             dic={}
