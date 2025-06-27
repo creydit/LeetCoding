@@ -15,6 +15,7 @@ public:
         //this can be done by simple swapping of pointer 
         //Iterative solution 
         //TC- O(n) and SC-O(1)
+        /*
         ListNode* temp = head;
         ListNode* prev = nullptr;
         while(temp){
@@ -24,8 +25,21 @@ public:
             temp = front;
         }
         return prev; // the new head of LL
+        */
 
-        
+        //Recurvise Implementation 
+        //TC-O(n) and SC-O(n) recursive stack space 
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        ListNode* newNode = reverseList(head->next);
+        ListNode* front = head->next;
+        front->next = head;
+        head->next = nullptr;
+        return newNode;
+
+
         //Brute force i can think of is using a stack to store the elements in
         // in one traversal then on 2nd pop those values from it and upfdate the list
         //TC - O(2n) and SC - O(n)
