@@ -11,9 +11,29 @@
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
+        //Optimal solution changing links of odd and even indexes thats it 
+        //TC - O(n) abd SC - O(1)
+        if(head==NULL || head->next == NULL){
+            return head;
+        }
+        ListNode* odd = head;
+        ListNode* even = head->next;
+        ListNode* evenHead = head->next;
+        while(even && even->next){
+            odd->next = odd->next->next;
+            even->next = even->next->next;
+
+            odd = odd->next;
+            even = even->next;
+        }
+        odd->next = evenHead;
+        return head;
+        
         //Brute force thinking of using 2 stack to store the values of odd even nodes and 
         //maintaing a counter to record the what is odd and what is even 
         //TC - O(n/2 + n/2 + n) ~ O(2n) and SC - O(n)
+
+        /*
         if (head==NULL || head->next==NULL){
             return head;
         }
@@ -39,5 +59,6 @@ public:
             temp = temp->next;
         }
         return head;
+        */
     }
 };
