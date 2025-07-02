@@ -19,7 +19,7 @@ public:
     Node* copyRandomList(Node* head) {
         //Brute force of using a map to store both original and copy of node into it 
         //then travsering and making links from original
-        //TC - O(n + n + logn) ! O(2nlogn) and SC - O(n + n) ~ O(2n) for map and answer
+        //TC - O(n + n + logn) and O(2nlogn) and SC - O(n + n) ~ O(2n) for map and answer
         Node* temp = head;
         unordered_map<Node*,Node*>mpp;
         while(temp){
