@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # See C++ for explaination
+        # See C++ for explanation
         if head==None and head.next==None:
             return head
         slow = head
