@@ -35,6 +35,7 @@ public:
 
     vector<string> generateParenthesis(int n) {
         //Recursion approach and Backtracking
+        //TC - O(2^2n * 2n) and SC - O(2*n) for depth of recursion
         string s;
         solve(s,n);
         return ans;
