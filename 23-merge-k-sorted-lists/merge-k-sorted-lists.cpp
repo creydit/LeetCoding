@@ -10,9 +10,35 @@
  */
 class Solution {
 public:
+    struct Compare{
+        bool operator()(ListNode* a, ListNode* b){
+            return a->val > b->val;
+        }
+    };
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        //Better Optimal apporach can be using priroity heap 
+        //firstly adding all the nodes of list in queue/heap then taking the smallest out and if it has next
+        //putting it into the heap and simultanoeusly doing this 
+        //TC - O(n * log(len(lists))) and SC - O(len(lists))
+        priority_queue<ListNode* , vector<ListNode*>, Compare> minHeap;
+        for(auto i : lists){
+            if(i) minHeap.push(i);
+        }
+
+        ListNode* dummy = new ListNode(-1);
+        ListNode* temp = dummy;
+        while(!minHeap.empty()){
+            ListNode* newNode = minHeap.top();
+            minHeap.pop();
+            temp->next = newNode;
+            temp = newNode;
+            if(newNode->next) minHeap.push(newNode->next);
+        }
+        return dummy->next;
+
         //Brute force by me is using a array to hold all the values then sort it and make a new LL
         //TC - O(n*n + n*logn + n) and SC - O(n + n)
+        /*
         vector<int> arr;
         for(auto i : lists){
             ListNode* temp = i;
@@ -31,5 +57,6 @@ public:
             temp = newNode;
         }
         return head;
+        */
     }
 };
