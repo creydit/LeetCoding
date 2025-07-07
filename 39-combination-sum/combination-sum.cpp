@@ -1,25 +1,27 @@
 class Solution {
 public:
     vector<vector<int>>ans;
-    void solve(int idx, vector<int>& cand, vector<int>temp, int target){
-        if(idx == cand.size()){
-            if(target == 0){
-                ans.push_back(temp);
-            }
+    void solve(int idx, int sum, vector<int>& cand, vector<int>temp, int target){
+        if( sum == target){
+            ans.push_back(temp);
             return;
         }
-        if(cand[idx] <= target){
-            temp.push_back(cand[idx]);
-            solve(idx, cand, temp, target - cand[idx]);
+        if(sum > target) return;
+
+        for(int i = idx; i < cand.size(); i++){
+            if(sum + cand[i] > target) break;
+            temp.push_back(cand[i]);
+            solve(i, sum + cand[i], cand, temp, target);
             temp.pop_back();
+
         }
-        solve(idx+1, cand, temp, target);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         //Recursion and Backtracking 
         //TC - (2^t * k) 
+        sort(candidates.begin(), candidates.end());
         vector<int>temp;
-        solve(0, candidates, temp, target);
+        solve(0, 0, candidates, temp, target);
         return ans;
     }
 };
