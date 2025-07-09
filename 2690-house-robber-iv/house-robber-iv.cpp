@@ -18,7 +18,10 @@ public:
     }
 
     int minCapability(vector<int>& nums, int k) {
-        int low = *min_element(nums.begin(),nums.end());
+        //Optimal by Binary search from one to highest element then checking if he can steal from the 
+        //housed not adjacent for every mid value respectively
+        //TC - O( n * log(max - min)) and SC - O(1)
+        int low = 1;
         int high = *max_element(nums.begin(),nums.end());
         int ans = 0;
         while(low <= high){
