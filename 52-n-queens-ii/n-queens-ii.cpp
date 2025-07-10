@@ -1,9 +1,9 @@
 class Solution {
 public:
-    void solve(int col, vector<string> &board, vector<vector<string>> &ans, vector<int> &leftRow, 
+    void solve(int col, vector<string> &board, int &ans, vector<int> &leftRow, 
                 vector<int> &UpDia, vector<int> &LoDia, int n){
         if( col == n){
-            ans.push_back(board);
+            ans++;
             return;
         }
 
@@ -27,7 +27,7 @@ public:
     int totalNQueens(int n) {
         //Recursion and Backtracking 
         //TC - O(2^n)
-        vector<vector<string>> ans;
+        int ans = 0;
         vector<string> board(n);
         string s(n, '.');
         for(int i = 0; i < n; i++){
@@ -37,6 +37,6 @@ public:
         vector<int> UpDia(2*n - 1, 0);
         vector<int> LoDia(2*n - 1, 0);
         solve(0, board, ans, leftRow, UpDia, LoDia, n);
-        return ans.size();
+        return ans;
     }
 };
