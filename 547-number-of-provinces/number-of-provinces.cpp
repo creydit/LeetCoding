@@ -12,8 +12,6 @@ public:
         //TC - O(N + V + 2E) and SC - O( N + N) for vis arrays and recursion stack space 
         int n = isConnected.size();
         vector<bool> vis(n, false);
-        vector<vector<int>> adjList(n);
-
         //Conversion of Adjacency matrix to List
         /*
         for(int i = 0; i < n; i++){
