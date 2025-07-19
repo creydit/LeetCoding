@@ -8,6 +8,7 @@ public:
             }
         }
     }
+    
     int findCircleNum(vector<vector<int>>& isConnected) {
         //TC - O(N + V + 2E) and SC - O( N + N) for vis arrays and recursion stack space 
         int n = isConnected.size();
