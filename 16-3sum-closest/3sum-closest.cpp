@@ -1,8 +1,34 @@
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
+        //Better Code than mine
+        int n = nums.size();
+        int ans = 0;
+        int gap = INT_MAX;
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i < n; i++){
+            if(i>0 && nums[i]==nums[i-1])continue;
+            int j = i + 1;
+            int k = n - 1;
+            while( j < k){
+                long long sum = nums[i];
+                sum += nums[j];
+                sum += nums[k];
+                if( sum == target) return target;
+                else if ( sum < target)j++;
+                else k--;
+                int req = abs(sum - target);
+                if(req < gap){
+                    gap = req;
+                    ans = sum;
+                }
+            }
+        }
+        return ans;
+
         //Optimising using 2 pointers qnd sorting
         //TC - O(n2 + nlogn) and SC - O(1)
+        /*
         int n = nums.size();
         int ans = 0;
         int gap = INT_MAX;
@@ -33,6 +59,7 @@ public:
             }
         }
         return ans;
+        */
 
         //Brute force using 3 loops
         //TC - O(n3) and SC - O(1)
