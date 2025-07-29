@@ -19,11 +19,9 @@ public:
                 carry = carry / 10;
             }
         }
-        if (carry != 0){
-            while( carry != 0){
-                ans.insert(ans.begin(), carry % 10);
-                carry = carry / 10;
-            }
+        while( carry != 0){
+            ans.insert(ans.begin(), carry % 10);
+            carry = carry / 10;
         }
         return ans;
     }
