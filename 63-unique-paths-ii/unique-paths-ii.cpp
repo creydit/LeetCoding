@@ -1,5 +1,6 @@
 class Solution {
 public:
+    /*
     int solve(int r, int c, vector<vector<int>> &grid, vector<vector<int>>& dp){
         if(r>=0  && c>=0 && grid[r][c] == 1){
             return 0;
@@ -14,12 +15,61 @@ public:
 
         return dp[r][c] = up + left;
     }
+    */
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        //Space Optimised DP
+        // TC - O(n*m) and SC - O(n)
+        int m = obstacleGrid.size();
+        int n = obstacleGrid[0].size();
+        vector<int> prev(n,0);
+        for(int i = 0; i < m; i++){
+            vector<int> cur(n,0);
+            for(int j = 0; j < n; j++){
+                if(obstacleGrid[i][j] == 1) cur[j] = 0;
+                else if(i==0 && j==0) cur[j] = 1;
+                else{
+                    int up = 0;
+                    int left = 0;
+                    if(i > 0) up = prev[j];
+                    if(j > 0) left = cur[j-1];
+                    cur[j] = up + left;
+                }
+            }
+            prev = cur;
+        }
+        return prev[n-1];
+
+
+        //BY Tabulation
+        //TC - O(n*m) and SC - O(n*m)
+        /*
+        int n = obstacleGrid.size();
+        int m = obstacleGrid[0].size();
+        vector<vector<int>> dp(n, vector<int>(m, -1));
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(obstacleGrid[i][j] == 1)dp[i][j] = 0;
+                else if(i==0 && j==0) dp[i][j] = 1;
+                else{
+                    int up = 0;
+                    int left = 0;
+                    if(i > 0) up = dp[i-1][j];
+                    if(j > 0) left = dp[i][j-1];
+                    dp[i][j] = up + left;
+                }
+            }
+        }
+        return dp[n-1][m-1];
+        */
+
         //Recursion + DP woth memoization
         //TC - O(n*m) and SC - (n+m+n*m)
+        /*
         int n = obstacleGrid.size();
         int m = obstacleGrid[0].size();
         vector<vector<int>> dp(n, vector<int>(m, -1));
         return solve(n-1, m-1, obstacleGrid, dp);
+        */
     }
 };
