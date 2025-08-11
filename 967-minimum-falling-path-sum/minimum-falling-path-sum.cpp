@@ -14,8 +14,36 @@ public:
     }
     */
     int minFallingPathSum(vector<vector<int>>& matrix) {
+        //Space Optimised
+        //TC - O(n*m) and SC - O(n)
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<int> curr(m,0), prev(m,0);
+        for(int j = 0; j < m; j++) {
+            prev[j] = matrix[0][j];
+        }
+
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < m; j++){
+                int up = matrix[i][j] + prev[j];
+                int ld = matrix[i][j];
+                ld += j-1 >= 0 ? prev[j - 1] : 1e9;
+                int rd = matrix[i][j];
+                rd += j+1 < m ? prev[j + 1] : 1e9;
+                int ans = min(ld,rd);
+                curr[j]= min(ans, up);
+            }
+            prev = curr;
+        }
+        int ans = INT_MAX;
+        for (int j = 0; j < m; j++){
+            ans = min(ans, prev[j]);
+        }
+        return ans;
+
         //Tabulation //Bottom Up
         //TC - O(n*m) and SC - O(n*m)
+        /*
         int n = matrix.size();
         int m = matrix[0].size();
         vector<vector<int>> dp(n, vector<int>(m, -1));
@@ -39,6 +67,7 @@ public:
             ans = min(ans, dp[n-1][j]);
         }
         return ans;
+        */
 
         //Recursive  + Dp + Memoization //Top Down
         // TC - O(n*m) and SC - O(n*m + n)
