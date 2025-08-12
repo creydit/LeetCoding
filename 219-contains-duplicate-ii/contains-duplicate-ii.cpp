@@ -1,8 +1,18 @@
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) { 
+        //Optimal by using a map and chekcing while traversing 
+        //TC - O(n) and SC -O(n)
+        int n = nums.size();
+        unordered_map<int,int> mpp;
+        for(int i = 0; i < n; i++){
+            if (mpp.find(nums[i]) != mpp.end() && abs(mpp[nums[i]] - i) <= k ) return true;
+            mpp[nums[i]] = i;
+        }
+        return false;
         //Better by using a sorting with pair of element and number of indices
         // TC - O(2n + nlogn) and SC - O(n)
+        /*
         int n = nums.size();
         vector<pair<int,int>> arr;
         for(int i = 0;i < n; i++){
@@ -13,6 +23,7 @@ public:
             if (arr[i].first == arr[i+1].first && abs(arr[i].second - arr[i+1].second) <= k)return true;
         }
         return false;
+        */
         //Brute using 2 loops
         //TC - O(n2) and SC - O(1)
         /*
