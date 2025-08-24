@@ -18,6 +18,17 @@ public:
     int change(int amount, vector<int>& coins) {
         //By coin change logic instead if just calculating money we just count it in 
         
+        //BEST Solution
+        //TC - O(n*amount) and SC - O(amount) 
+        vector<unsigned long long> dp(amount + 1, 0);
+        dp[0] = 1;
+        for (int coin : coins) {
+            for (int target = coin; target <= amount; target++) {
+                dp[target] += dp[target - coin];
+            }
+        }
+        return (int)dp[amount];
+
         //Space Optimised
         //TC - O(n*amount) and SC - O(2amount)
         using u128 = unsigned __int128;
