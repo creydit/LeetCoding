@@ -6,20 +6,44 @@ public:
         if(dp[idx][buy] != -1) return dp[idx][buy];
         long long profit = 0;
         if(buy){
-            profit = max( - prices[idx] + solve(idx + 1, 0, prices, dp),
-                            0 + solve(idx + 1, 1, prices, dp));
+            profit = max( - prices[idx] + solve(idx + 1, 0, prices, dp),    //BUY
+                            0 + solve(idx + 1, 1, prices, dp));             //DIDN'T BUY
         }
         else{
-            profit = max( prices[idx] + solve(idx + 1, 1, prices, dp),
-                            0 + solve(idx + 1, 0, prices, dp));
+            profit = max( prices[idx] + solve(idx + 1, 1, prices, dp),      //BUY
+                            0 + solve(idx + 1, 0, prices, dp));             //DIDN'T BUY
         }
         return dp[idx][buy] = profit;
     }
     */
     int maxProfit(vector<int>& prices) {
+        //Space optimised
+        //TC - O(2*n) and SC - O(1)
+         int n = prices.size();
+        vector<int> ahead(2,0) , curr(2,0);
+        ahead[0] = ahead[1] = 0;
+        for(int idx = n-1; idx >= 0; idx--){
+            for(int buy = 0; buy <= 1; buy++){
+                long long profit = 0;
+                if(buy){
+                    profit = max( - prices[idx] + ahead[0],
+                                    0 + ahead[1]);
+                }
+                else{
+                    profit = max( prices[idx] + ahead[1],
+                                    0 + ahead[0]);
+                }
+                curr[buy] = profit;
+            }
+            ahead = curr;
+        }
+        return ahead[1];
+
+        
         //BY Dp and Tabulation
         //bottom up
         //TC - O(2*n) and SC- O(2*N)
+        /*
         int n = prices.size();
         vector<vector<long long>> dp(n+1, vector<long long> (2, -1));
         dp[n][0] = dp[n][1] = 0;
@@ -38,6 +62,9 @@ public:
             }
         }
         return dp[0][1];
+        */
+
+
         //BY Dp and memoization 
         //Top down
         //TC - O(n*2) and SC - O(2*n = n)
