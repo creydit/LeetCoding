@@ -1,5 +1,6 @@
 class Solution {
 public: 
+    /*
     int solve(int idx, int buy, vector<int>& prices, vector<vector<int>>& dp){
         if (idx >= prices.size()) return 0;
 
@@ -16,14 +17,39 @@ public:
 
         return dp[idx][buy] = profit;
     }
+    */
     int maxProfit(vector<int>& prices) {
         //almost same as buy and sell stock 2 with only difference of cooldown which can be
         //done by skipping 1 index after selling 
+        
+        //by tabulation
+        // TC - O(2*n) and SC - O(2*n)
+        int n = prices.size();
+        vector<vector<int>> dp(n+2, vector<int>(2, 0));
+
+        for(int idx = n-1; idx >= 0; idx--){
+            for(int buy = 0; buy <= 1; buy++){
+                int profit = 0;
+                if (buy){
+                    profit = max( -prices[idx] + dp[idx+1][0],
+                                    0  + dp[idx+1][1] );
+                }
+                else{
+                    profit = max( prices[idx] + dp[idx + 2][1],
+                                    0 + dp[idx + 1][0] );
+                }
+
+                dp[idx][buy] = profit;
+            }
+        }
+        return dp[0][1];
 
         //by Recursion + DP + memoization
         // TC - O(2*n) and SC - O(2*n + n)
+        /*
         int n = prices.size();
         vector<vector<int>> dp(n+1, vector<int>(2, -1));
         return solve(0, 1, prices, dp);
+        */
     }
 };
