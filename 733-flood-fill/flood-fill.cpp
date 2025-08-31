@@ -11,7 +11,7 @@ private:
             int rr = sr + dx[d];
             int cc = sc + dy[d];
             
-            if( rr>=0 && cc>=0 && rr < n && cc < m && ans[rr][cc] != nC and image[rr][cc] == iniC ){
+            if( rr>=0 && cc>=0 && rr < n && cc < m && ans[rr][cc] != nC && image[rr][cc] == iniC ){
                 dfs(rr, cc, ans, image, iniC, nC);
             }
         }
