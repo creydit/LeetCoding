@@ -1,6 +1,18 @@
 class Solution:
     def minMirrorPairDistance(self, nums: List[int]) -> int:
         n = len(nums)
+        dic = defaultdict(int)
+        ans = inf
+        for i in range(n):
+            x = int(str(nums[i])[::-1])
+            if nums[i] in dic:
+                ans = min(ans, i - dic[nums[i]])
+            dic[x] = i
+
+        return ans if ans!=inf else -1
+        '''
+        #Pure Mine 
+        n = len(nums)
 
         arr = []
         for i in range(n):
@@ -36,3 +48,4 @@ class Solution:
         if not ok:
             return -1
         return ans
+        '''
