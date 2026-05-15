@@ -3,9 +3,9 @@ class Solution:
         ss = 0
         l = 0
         i = 1
-        avoid = set()
+        check = [0]*10**5
         while l < n:
-            if i in avoid:
+            if check[i]:
                 i += 1
                 continue
             if i >= k:
@@ -14,7 +14,7 @@ class Solution:
                 l += 1
                 continue
             ss += i
-            avoid.add(k-i)
+            check[k-i] = 1
             l += 1
             i += 1
         return ss
