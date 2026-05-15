@@ -1,13 +1,20 @@
 class Solution:
     def minimumSum(self, n: int, k: int) -> int:
-        arr = []
+        ss = 0
+        l = 0
         i = 1
         avoid = set()
-        while len(arr) < n:
+        while l < n:
             if i in avoid:
                 i += 1
                 continue
-            arr.append(i)
+            if i >= k:
+                ss += i
+                i += 1
+                l += 1
+                continue
+            ss += i
             avoid.add(k-i)
+            l += 1
             i += 1
-        return sum(arr)
+        return ss
