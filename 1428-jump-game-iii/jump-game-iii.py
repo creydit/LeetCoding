@@ -3,15 +3,12 @@ class Solution:
         n = len(arr)
         vis = [0] *(n+1)
         def solve(idx):
-            if idx >= n or idx < 0:
+            if idx >= n or idx < 0 or vis[idx]:
                 return False
             
             if arr[idx] == 0:
                 return True
-            
-            if vis[idx] == 1:
-                return False
-                
+
             vis[idx] = 1
             left = idx + arr[idx]
             right = idx - arr[idx]
