@@ -1,5 +1,6 @@
 class Solution:
     def minJumps(self, arr: List[int]) -> int:
+        #MY BFS
         n = len(arr)
         dic = defaultdict(list)
         for i in range(n):
@@ -15,7 +16,7 @@ class Solution:
             at = node[0]
             jumps = node[1]
             if at == n-1:
-                ans = min(ans,jumps)
+                return jumps
 
             m1 = at + 1
             if m1 < n and vis[m1] == 0:
@@ -35,5 +36,5 @@ class Solution:
                         q.append((m3,jumps+1))
                         vis[m3] = 1
             dic[arr[at]] = []
-        return ans
+        return 0
             
