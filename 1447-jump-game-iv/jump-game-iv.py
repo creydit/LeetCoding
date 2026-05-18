@@ -1,5 +1,5 @@
 class Solution:
-    def minJumps(self, arr: List[int]) -> int:
+    def minJumps(self, arr: List[int]) -> int: 
         #MY BFS
         n = len(arr)
         dic = defaultdict(list)
@@ -30,11 +30,9 @@ class Solution:
             
 
             for m in dic[arr[at]]:
-                if m != at:
-                    m3 = m
-                    if vis[m3] == 0:
-                        q.append((m3,jumps+1))
-                        vis[m3] = 1
-            dic[arr[at]] = []
+                if m != at and vis[m] == 0:
+                    q.append((m,jumps+1))
+                    vis[m] = 1
+            dic[arr[at]].clear()
         return 0
             
