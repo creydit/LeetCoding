@@ -1,5 +1,23 @@
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        #better
+        st = []
+        for current in asteroids:
+            while st and st[-1] > 0 and current < 0:
+                if st[-1] == abs(current):
+                    st.pop()
+                    break
+                if st[-1] < abs(current):
+                    st.pop()
+                else:
+                    break
+            else:
+                st.append(current)
+        return st
+
+        
+        '''
+        #RAw Mine
         n = len(asteroids)
         st = deque()
 
@@ -32,4 +50,4 @@ class Solution:
             ans.append(st.popleft())
 
         return ans        
-        
+        '''
