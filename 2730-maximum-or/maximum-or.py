@@ -15,6 +15,6 @@ class Solution:
             left = pref[i-1] if i>0 else 0
             right = suff[i+1] if i<n-1 else 0
 
-            ans = max(ans, left | nums[i]*(2**k) | right)
+            ans = max(ans, left | nums[i] << k | right)
         
         return ans
