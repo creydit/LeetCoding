@@ -4,6 +4,22 @@ class Solution:
         n2 = len(nums2)
         ans = []
         for i in range(n1):
+            ng = -1
+            for j in range(n2-1,-1,-1):
+                if nums2[j] > nums1[i]:
+                    ng = nums2[j]
+                elif nums2[j] == nums1[i]:
+                    break
+            ans.append(ng)
+        return ans
+
+        #Brute force
+        #TC - O(n^3) and SC - O(1)
+        '''
+        n1 = len(nums1)
+        n2 = len(nums2)
+        ans = []
+        for i in range(n1):
             f = False
             for j in range(n2):
                 if nums1[i] == nums2[j]:
@@ -15,3 +31,4 @@ class Solution:
             if not f:
                 ans.append(-1)
         return ans 
+        '''
