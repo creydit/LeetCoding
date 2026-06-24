@@ -1,5 +1,26 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        #Optimal using monotonic stack and hahsmap
+        #TC - O(n1 + n2) and SC - O(1)
+        n1 = len(nums1)
+        n2 = len(nums2)
+        hashnums2 = [-1]*(10001)
+        st = []
+        for i in range(n2-1,-1,-1):
+            while st and st[-1] < nums2[i]:
+                st.pop()
+            if st:
+                hashnums2[nums2[i]] = st[-1]
+            st.append(nums2[i])
+
+        ans = [-1]*n1
+        for i in range(n1):
+            ans[i] = hashnums2[nums1[i]]
+        return ans 
+
+        #better 
+        #TC - O(n^2) and SC- O(1)
+        '''
         n1 = len(nums1)
         n2 = len(nums2)
         ans = []
@@ -12,7 +33,7 @@ class Solution:
                     break
             ans.append(ng)
         return ans
-
+        '''
         #Brute force
         #TC - O(n^3) and SC - O(1)
         '''
