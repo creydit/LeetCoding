@@ -7,7 +7,22 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        mp = defaultdict(int)
+        #Using Recursion and no extra space
+        #TC - O(N) and SC - O(N) auxillary 
+        if root is None or p==root or q==root:
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l==None:
+            return r
+        elif r==None:
+            return l
+        return root 
+
+
+        #DFS storing paths
+        #TC - O(N+N) and SC - O(N+N)
+        '''
         def dfs(node, x, path):
             if node is None:
                 return False
@@ -36,3 +51,4 @@ class Solution:
             else:
                 break
         return ans
+        '''
