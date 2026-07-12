@@ -9,7 +9,25 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        #using stack same TC - O(N) and SC - O(N)
+        #can be done by recursion too
+        if root is None:
+            return
+        st = []
+        st.append(root)
+        while st:
+            curr = st.pop()
+            if curr.right:
+                st.append(curr.right)
+            if curr.left:
+                st.append(curr.left)
+            if st:
+                curr.right = st[-1]
+            curr.left = None
+
         #Brute force using arr to store nodes and then creating nodes
+        #TC - O(N) and SC - O(N)
+        '''
         if root:
             arr = []
             def dfs(node):
@@ -25,3 +43,4 @@ class Solution:
                 curr.right = node
                 curr.left = None
                 curr = curr.right
+        '''
