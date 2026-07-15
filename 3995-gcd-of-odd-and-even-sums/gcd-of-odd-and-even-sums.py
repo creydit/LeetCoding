@@ -1,10 +1,16 @@
 class Solution:
     def gcdOfOddEvenSums(self, n: int) -> int:
+        #TC - O(1)
+        return n
+
+        
         #TC - O(logN)
+        '''
         so = n*n
         se = n*(n+1)
         return math.gcd(so,se)
-        
+        '''
+
         #TC - O(N)
         '''
         numo = 1
