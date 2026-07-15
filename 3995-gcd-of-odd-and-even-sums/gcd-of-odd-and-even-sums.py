@@ -1,0 +1,12 @@
+class Solution:
+    def gcdOfOddEvenSums(self, n: int) -> int:
+        numo = 1
+        nume = 2
+        so = 1
+        se = 2
+        for i in range(n-1):
+            numo += 2
+            nume += 2
+            so += numo
+            se += nume
+        return math.gcd(so,se)
