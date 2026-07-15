@@ -1,5 +1,12 @@
 class Solution:
     def gcdOfOddEvenSums(self, n: int) -> int:
+        #TC - O(logN)
+        so = n*n
+        se = n*(n+1)
+        return math.gcd(so,se)
+        
+        #TC - O(N)
+        '''
         numo = 1
         nume = 2
         so = 1
@@ -10,3 +17,4 @@ class Solution:
             so += numo
             se += nume
         return math.gcd(so,se)
+        '''
