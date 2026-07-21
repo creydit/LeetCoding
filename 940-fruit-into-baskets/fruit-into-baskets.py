@@ -9,7 +9,7 @@ class Solution:
                 mpp[fruits[r]]=1
             else:
                 mpp[fruits[r]] += 1
-            while len(mpp) > 2:
+            if len(mpp) > 2:
                 mpp[fruits[l]] -= 1
                 if mpp[fruits[l]]==0:
                     del mpp[fruits[l]]
