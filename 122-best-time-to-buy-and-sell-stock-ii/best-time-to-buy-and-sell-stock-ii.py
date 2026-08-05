@@ -1,10 +1,7 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
-        dp = [[0]*2 for _ in range(n+1)]
-        dp[n][0] = 0
-        dp[n][1] = 0
-        for i in range(n-1,-1,-1):
-            dp[i][0] = max(dp[i+1][0], -prices[i] + dp[i+1][1])
-            dp[i][1] = max(dp[i+1][1], prices[i] + dp[i+1][0])
-        return dp[0][0]
+        ans = 0
+        for i in range(1,n):
+            ans += max(0, prices[i] - prices[i-1])
+        return ans
