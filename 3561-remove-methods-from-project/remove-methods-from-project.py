@@ -1,5 +1,29 @@
 class Solution:
     def remainingMethods(self, n: int, k: int, invocations: List[List[int]]) -> List[int]:
+        #better code
+        adj = [[] for _ in range(n)]
+        for u,v in invocations:
+            adj[u].append(v)
+
+        buggy = [0]*(n)
+
+        def dfs(node):
+            buggy[node] = 1
+            for nbr in adj[node]:
+                if buggy[nbr] == 0:
+                    dfs(nbr)
+
+        buggy[k] = 0
+        dfs(k)
+
+        for u,v in invocations:
+            if buggy[u] == 0 and buggy[v] == 1:
+                return [i for i in range(n)]
+
+        return [i for i in range(n) if buggy[i] == 0]
+
+
+        '''
         adj = [[] for _ in range(n)]
         for u,v in invocations:
             adj[u].append(v)
@@ -39,3 +63,4 @@ class Solution:
         if every:
             return [i for i in range(n)]
         return ans
+        '''
