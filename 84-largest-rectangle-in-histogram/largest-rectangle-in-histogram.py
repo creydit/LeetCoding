@@ -7,9 +7,7 @@ class Solution:
         right = [0]*n
 
         st = []
-        left[0] = -1
-        st.append(0)
-        for i in range(1,n):
+        for i in range(n):
             while st and heights[st[-1]] >= heights[i]:
                 st.pop()
             if not st:
@@ -18,10 +16,8 @@ class Solution:
                 left[i] = st[-1]
             st.append(i)
 
-        right[n-1] = n
         st.clear()
-        st.append(n-1)
-        for i in range(n-2,-1,-1):
+        for i in range(n-1,-1,-1):
             while st and heights[st[-1]] >= heights[i]:
                 st.pop()
             if not st:
@@ -32,7 +28,8 @@ class Solution:
 
         ans = 0
         for i in range(n):
-            area = heights[i] * ((i - left[i]) + (right[i] - i) - 1)
+            width = right[i] - left[i] - 1      #came from ((i - left[i]) + (right[i] - i) - 1)
+            area = heights[i] * width
             ans = max(ans, area)
         return ans
 
