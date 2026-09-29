@@ -1,7 +1,6 @@
 class Solution:
     def doesAliceWin(self, s: str) -> bool:
-        vowels = ['a','e','i','o','u']
-        for i in vowels:
-            if i in s:
+        for i in s:
+            if i in ['a','e','i','o','u']:
                 return True
         return False
