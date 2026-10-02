@@ -1,18 +1,16 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def generateParenthesis(self, n: int) -> list[str]:
         ans = []
-        def solve(s,op,cl):
-            if op > n and cl > n:
-                return
-            if op==n and cl==n:
-                ans.append(s)
-                return 
-            if op <= n:
-                solve(s+'(',op+1,cl)
-                if cl < op:
-                    solve(s+')',op,cl+1)
-            else:
-                solve(s+')',op,cl+1)
 
-        solve('(',1,0)
-        return ans
+        def solve(s,o,c,n):
+            if c > o or o > n or c > n:
+                return 
+            if o==c and o+c == 2*n:
+                ans.append(s)
+                return
+
+            solve(s+'(',o+1,c,n)
+            solve(s+')',o,c+1,n)
+
+        solve('(',1,0,n)
+        return ans 
