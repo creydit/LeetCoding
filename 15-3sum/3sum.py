@@ -4,10 +4,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        ans = set()
+        ans = []
         n = len(nums)
         nums.sort()
         for i in range(n):
+            if i > 0 and nums[i]==nums[i-1]:
+                continue
             val1 = nums[i]
             j = i + 1
             k = n - 1
@@ -16,16 +18,17 @@ class Solution(object):
                 val3 = nums[k]
                 ss = val1+val2+val3
                 if ss == 0:
-                    ans.add((val1, val2, val3))
+                    ans.append((val1, val2, val3))
+                    while j < k and nums[j] == nums[j+1]:
+                        j += 1
+                    while j < k and nums[k] == nums[k-1]:
+                        k -= 1
                     j += 1
                     k -= 1
                 elif ss < 0:
                     j += 1
                 else:
                     k -= 1
-        ans2 = []
-        for i in ans:
-            ans2.append(i)
-        return ans2
+        return ans
         
         
