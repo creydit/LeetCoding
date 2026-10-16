@@ -1,7 +1,8 @@
 class Solution:
     def fib(self, n: int) -> int:
-        def f(n):
-            if n <= 1:
-                return n
-            return f(n-1) + f(n-2)
-        return f(n)
+        dp = [0]*31
+        dp[0] = 0
+        dp[1] = 1
+        for i in range(2,n+1):
+            dp[i] = dp[i-1]+dp[i-2]
+        return dp[n]
