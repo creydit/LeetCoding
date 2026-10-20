@@ -1,6 +1,22 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
+        #solution like Longest palindromic substring (LC5)
+        ans = 0
+        n = len(s)
+        for i in range(n):
+            l,r = i,i+1
+            while l >= 0 and r < n and s[l]==s[r]:
+                l -= 1
+                r += 1
+                ans += 1
+            l,r = i,i
+            while l >= 0 and r < n and s[l]==s[r]:
+                l -= 1
+                r += 1
+                ans += 1
+        return ans
         #dp
+        '''
         n = len(s)
         dp = [[False]*(n+1) for _ in range(n+1)]
         ans = 0
@@ -20,6 +36,7 @@ class Solution:
                 if dp[i][j]:
                     ans += 1
         return ans 
+        '''
 
         #brute force
         '''
