@@ -5,6 +5,14 @@ class Solution:
         if ss % n != 0:
             return -1
         avg = ss // n
+        ans = 0
+        cum = 0
+        for m in machines:
+            diff = m - avg
+            cum += diff
+            ans = max(ans, abs(cum), diff)
+        return ans
+        '''
         leftsum = [0]*(n+1)
         rightsum = [0]*(n+1)
         for i in range(1,n):
@@ -23,3 +31,4 @@ class Solution:
                 right = expright - rightsum[i]
             ans = max(ans, left+right)
         return ans
+        '''
