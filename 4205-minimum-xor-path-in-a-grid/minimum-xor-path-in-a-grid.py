@@ -2,6 +2,31 @@ class Solution:
     def minCost(self, grid: list[list[int]]) -> int:
         n = len(grid)
         m = len(grid[0])
+        s = set()
+        ans = 10**18
+
+        def dfs(r, c, xor):
+            nonlocal ans
+
+            if r < 0 or c < 0 or ans == 0 or (r,c,xor) in s:
+                return
+            
+            s.add((r,c,xor))
+            xor ^= grid[r][c]
+
+            if r == 0 and c == 0:
+                ans = min(ans, xor)
+                return
+
+            dfs(r-1,c,xor)
+            dfs(r,c-1,xor)
+        
+        dfs(n-1,m-1,0)
+        return ans
+
+        '''
+        n = len(grid)
+        m = len(grid[0])
         dp = [[[0]*1024 for __ in range(m)] for _ in range(n)]
 
         dp[0][0][grid[0][0]] = 1
@@ -24,5 +49,6 @@ class Solution:
                 return i
 
         return -1
+        '''
         
 
