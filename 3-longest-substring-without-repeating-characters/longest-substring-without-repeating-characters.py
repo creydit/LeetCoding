@@ -3,14 +3,12 @@ class Solution:
         # See C++ for explaination
         n = len(s)
         l = 0
-        r = 0
         ans = 0
-        hash = [-1] * 256
-        while r < n:
-            idx = ord('a') - ord(s[r])
-            if hash[idx] != -1 and hash[idx] >= l:
-                l = hash[idx] + 1
-            hash[idx] = r
+        mpp = [0]*256
+        for r in range(n):
+            mpp[ord(s[r]) - ord('a')] += 1 
+            while mpp[ord(s[r]) - ord('a')] > 1:
+                mpp[ord(s[l]) - ord('a')] -= 1
+                l += 1
             ans = max(ans, r - l + 1)
-            r+=1
-        return ans 
+        return ans
