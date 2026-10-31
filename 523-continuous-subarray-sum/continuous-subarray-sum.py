@@ -2,9 +2,6 @@ class Solution:
     def checkSubarraySum(self, nums: list[int], k: int) -> bool:
         n = len(nums)
 
-        if n == 1:
-            return False
-
         pref = [0]*(n+1)
         for i in range(n):
             pref[i+1] = pref[i] + nums[i]
