@@ -1,7 +1,29 @@
 class Solution:
     def countServers(self, grid: list[list[int]]) -> int:
+        #Optimal
+        #TC - O(N^2) and SC- O(1)
+        n = len(grid)
+        m = len(grid[0])
+        ans = 0
+        for i in range(n):
+            servers = 0
+            idx = -1
+            for j in range(m):
+                if grid[i][j] == 1:
+                    servers += 1
+                    idx = j
+            if servers > 1:
+                ans += servers
+            elif servers == 1:
+                for r in range(n):
+                    if r != i and grid[r][idx] == 1:
+                        ans += 1
+                        break
+        return ans
+
         #Better
         #TC - O(N^2) and SC - (2N)
+        '''
         n = len(grid)
         m = len(grid[0])
         rows = [0]*(n)
@@ -18,6 +40,7 @@ class Solution:
                     if rows[i] > 1 or cols[j] > 1:
                         ans += 1
         return ans
+        '''
 
         #Brute Force
         #Tc - O(n^3) SC - O(1)
